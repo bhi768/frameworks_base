@@ -58,4 +58,7 @@
     <!-- Whether device has a big physical display cutout -->
     <bool name="config_bigPhysicalDisplayCutout">false</bool>
 
+    <!-- Whether device has dash charging support -->
+    <java-symbol type="bool" name="config_hasDashCharger" />
+
 </resources>
