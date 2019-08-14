@@ -245,16 +245,6 @@ public class NetworkControllerBaseTest extends SysuiTestCase {
         NetworkControllerImpl.Config.add5GIconMapping("not_restricted_rrc_idle:5g", mConfig);
     }
 
-    public void setupDefaultNr5GIconDisplayGracePeriodTime_enableThirtySeconds() {
-        final int enableDisplayGraceTimeSec = 30;
-        NetworkControllerImpl.Config.setDisplayGraceTime(enableDisplayGraceTimeSec, mConfig);
-    }
-
-    public void setupDefaultNr5GIconDisplayGracePeriodTime_disabled() {
-        final int disableDisplayGraceTimeSec = 0;
-        NetworkControllerImpl.Config.setDisplayGraceTime(disableDisplayGraceTimeSec, mConfig);
-    }
-
     public void setConnectivityViaBroadcast(
         int networkType, boolean validated, boolean isConnected) {
         setConnectivityCommon(networkType, validated, isConnected);
