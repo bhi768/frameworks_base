@@ -4719,6 +4719,13 @@ public final class Settings {
         private static final Validator BATTERY_LIGHT_LOW_BLINKING_VALIDATOR =
                 BOOLEAN_VALIDATOR;
 
+        /** @hide */
+        public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
+
+        /** @hide */
+        private static final Validator BACK_GESTURE_HEIGHT_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /**
         * Low battery charging color
         * @hide
@@ -4887,6 +4894,7 @@ public final class Settings {
             BATTERY_LIGHT_FULL_COLOR,
             BATTERY_LIGHT_REALLYFULL_COLOR,
             DOZE_ON_CHARGE,
+            BACK_GESTURE_HEIGHT,
         };
 
         /**
@@ -5045,6 +5053,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
             PRIVATE_SETTINGS.add(VOLTE_ICON_STYLE);
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
         }
 
         /**
@@ -5154,6 +5163,7 @@ public final class Settings {
             VALIDATORS.put(SHOW_VOLTE_ICON, SHOW_VOLTE_ICON_VALIDATOR);
             VALIDATORS.put(VOLTE_ICON_STYLE, VOLTE_ICON_STYLE_VALIDATOR);
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
+            VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
         }
 
         /**
