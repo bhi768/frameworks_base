@@ -391,10 +391,8 @@ public class NetworkControllerImpl extends BroadcastReceiver
         if (dataController == null) {
             return false;
         }
-
         return dataController.isDataDisabled();
     }
-
     private void notifyControllersMobileDataChanged() {
         for (int i = 0; i < mMobileSignalControllers.size(); i++) {
             MobileSignalController mobileSignalController = mMobileSignalControllers.valueAt(i);
