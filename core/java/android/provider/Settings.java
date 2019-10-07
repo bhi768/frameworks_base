@@ -4766,6 +4766,20 @@ public final class Settings {
         private static final Validator BATTERY_LIGHT_REALLYFULL_COLOR_VALIDATOR =
                 ANY_STRING_VALIDATOR;
 
+        /*
+        * Whether to enable DOZE only when charging
+        * @hide
+        */
+       public static final String DOZE_ON_CHARGE = "doze_on_charge";
+
+       private static final Validator DOZE_ON_CHARGE_VALIDATOR = BOOLEAN_VALIDATOR;
+
+       /**
+        * hidden stting of the current atate of DOZE only when charging
+        * @hide
+        */
+       public static final String DOZE_ON_CHARGE_NOW = "doze_on_charge_now";
+
         /**
          * Whether to show VoLTE icon or not
          * @hide
@@ -4851,7 +4865,8 @@ public final class Settings {
             BATTERY_LIGHT_LOW_COLOR,
             BATTERY_LIGHT_MEDIUM_COLOR,
             BATTERY_LIGHT_FULL_COLOR,
-            BATTERY_LIGHT_REALLYFULL_COLOR
+            BATTERY_LIGHT_REALLYFULL_COLOR,
+            DOZE_ON_CHARGE,
         };
 
         /**
@@ -4988,6 +5003,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_FULL_COLOR);
             PRIVATE_SETTINGS.add(BATTERY_LIGHT_REALLYFULL_COLOR);
             PRIVATE_SETTINGS.add(SHOW_VOLTE_ICON);
+            PRIVATE_SETTINGS.add(DOZE_ON_CHARGE);
         }
 
         /**
@@ -5094,6 +5110,7 @@ public final class Settings {
             VALIDATORS.put(BATTERY_LIGHT_FULL_COLOR, BATTERY_LIGHT_FULL_COLOR_VALIDATOR);
             VALIDATORS.put(BATTERY_LIGHT_REALLYFULL_COLOR, BATTERY_LIGHT_REALLYFULL_COLOR_VALIDATOR);
             VALIDATORS.put(SHOW_VOLTE_ICON, SHOW_VOLTE_ICON_VALIDATOR);
+            VALIDATORS.put(DOZE_ON_CHARGE, DOZE_ON_CHARGE_VALIDATOR);
         }
 
         /**
