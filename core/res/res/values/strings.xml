@@ -5395,4 +5395,6 @@
     <!-- ChooserActivity - Alphabetically sorted apps list label. [CHAR LIMIT=NONE] -->
     <string name="chooser_all_apps_button_label">Apps list</string>
 
+    <!-- Pocket Lock --> 
+    <string name="pocket_lock_message_long_press">Press and hold power button to unlock</string> 
 </resources>
