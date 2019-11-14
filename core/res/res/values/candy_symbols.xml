@@ -54,4 +54,8 @@
 
     <!-- Whether device has dash charging support -->
     <java-symbol type="bool" name="config_hasDashCharger" />
+
+    <!-- Whether device supports variable refresh rate -->
+    <java-symbol type="bool" name="config_hasVariableRefreshRate" />
+
 </resources>
