@@ -21,6 +21,9 @@ import android.database.ContentObserver;
 import android.net.NetworkCapabilities;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telephony.NetworkRegistrationInfo;
 import android.telephony.PhoneStateListener;
@@ -52,9 +55,9 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 public class MobileSignalController extends SignalController<
         MobileSignalController.MobileState, MobileSignalController.MobileIconGroup> {
+
     private final TelephonyManager mPhone;
     private final SubscriptionDefaults mDefaults;
     private final String mNetworkNameDefault;
@@ -484,6 +487,7 @@ public class MobileSignalController extends SignalController<
         // When the device is camped on a 5G Non-Standalone network, the data network type is still
         // LTE. In this case, we first check which 5G icon should be shown.
         MobileIconGroup nr5GIconGroup = getNr5GIconGroup();
+
         if (nr5GIconGroup != null) {
             mCurrentState.iconGroup = nr5GIconGroup;
         } else if (mNetworkToIconLookup.indexOfKey(mDataNetType) >= 0) {
@@ -524,6 +528,9 @@ public class MobileSignalController extends SignalController<
         notifyListenersIfNecessary();
     }
 
+    /**
+     * If we are controlling the NOT_DEFAULT_DATA icon, check the status of the other one
+     */
     private MobileIconGroup getNr5GIconGroup() {
         if (mServiceState == null) return null;
 
@@ -544,13 +551,12 @@ public class MobileSignalController extends SignalController<
         } else if (nrState == NetworkRegistrationInfo.NR_STATE_NOT_RESTRICTED) {
             if (mConfig.nr5GIconMap.containsKey(Config.NR_NOT_RESTRICTED)) {
                 return mConfig.nr5GIconMap.get(Config.NR_NOT_RESTRICTED);
-            }
+           }
         } else if (nrState == NetworkRegistrationInfo.NR_STATE_RESTRICTED) {
             if (mConfig.nr5GIconMap.containsKey(Config.NR_RESTRICTED)) {
                 return mConfig.nr5GIconMap.get(Config.NR_RESTRICTED);
             }
         }
-
         return null;
     }
 
@@ -564,6 +570,7 @@ public class MobileSignalController extends SignalController<
                 || activity == TelephonyManager.DATA_ACTIVITY_IN;
         mCurrentState.activityOut = activity == TelephonyManager.DATA_ACTIVITY_INOUT
                 || activity == TelephonyManager.DATA_ACTIVITY_OUT;
+
         notifyListenersIfNecessary();
     }
 
