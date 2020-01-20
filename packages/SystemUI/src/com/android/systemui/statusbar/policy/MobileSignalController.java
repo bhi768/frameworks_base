@@ -1013,8 +1013,7 @@ public class MobileSignalController extends SignalController<
                     && ((MobileState) o).userSetup == userSetup
                     && ((MobileState) o).isDefault == isDefault
                     && ((MobileState) o).roaming == roaming
-                    && ((MobileState) o).defaultDataOff == defaultDataOff;
-                    && ((MobileState) o).imsResitered == imsResitered;
+                    && ((MobileState) o).imsResitered == imsResitered
                     && ((MobileState) o).isVolteRegistered == isVolteRegistered;
         }
     }
