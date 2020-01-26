@@ -286,8 +286,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     static final int LONG_PRESS_POWER_SHUT_OFF_NO_CONFIRM = 3;
     static final int LONG_PRESS_POWER_GO_TO_VOICE_ASSIST = 4;
     static final int LONG_PRESS_POWER_ASSISTANT = 5; // Settings.Secure.ASSISTANT
-    static final int LONG_PRESS_POWER_TORCH = 6;
-    static final int LONG_PRESS_POWER_HIDE_POCKET_LOCK = 7;
+    static final int LONG_PRESS_POWER_HIDE_POCKET_LOCK = 6;
 
     // must match: config_veryLongPresOnPowerBehavior in config.xml
     static final int VERY_LONG_PRESS_POWER_NOTHING = 0;
@@ -1347,15 +1346,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 final int powerKeyDeviceId = Integer.MIN_VALUE;
                 launchAssistAction(null, powerKeyDeviceId);
                 break;
-            case LONG_PRESS_POWER_TORCH:
-                mPowerKeyHandled = true;
-                // Toggle torch state asynchronously to help protect against
-                // a misbehaving cameraservice from blocking systemui.
-                mHandler.removeMessages(MSG_TOGGLE_TORCH);
-                Message msg = mHandler.obtainMessage(MSG_TOGGLE_TORCH);
-                msg.setAsynchronous(true);
-                msg.sendToTarget();
-                break;
         case LONG_PRESS_POWER_HIDE_POCKET_LOCK:
             mPowerKeyHandled = true;
             performHapticFeedback(HapticFeedbackConstants.LONG_PRESS, false, "Power - Long-Press - Hide Pocket Lock");
@@ -1414,9 +1404,6 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private int getResolvedLongPressOnPowerBehavior() {
         if (FactoryTest.isLongPressOnPowerOffEnabled()) {
             return LONG_PRESS_POWER_SHUT_OFF_NO_CONFIRM;
-        }
-        if (mTorchLongPressPowerEnabled && !isScreenOn()) {
-            return LONG_PRESS_POWER_TORCH;
         }
         if (mPocketLockShowing) {
             return LONG_PRESS_POWER_HIDE_POCKET_LOCK;
